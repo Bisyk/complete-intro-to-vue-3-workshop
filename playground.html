@@ -2,9 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Playground — Complete Intro to Vue 3</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Hello Frontend Masters</h1>
+    <div id="app">
+      <p v-if="message.length % 2 === 0">Even: {{message.toUpperCase()}}</p>
+      <p v-else>Odd: {{message}}</p>
+      <ul>
+        <li v-for="item in listOfNumbers">
+          {{ item.id }}
+          <ul>
+            <li v-for="num in item.list">{{num}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp } = Vue
+
+      const app = createApp({
+        data() {
+          return {
+            message: 'Hello it works',
+            listOfNumbers: [
+              { name: 1, id: '18d10139-bb78-46b8-b806-335274779233', list: [1, 2, 3] },
+              { name: 2, id: 'e8a8ea4c-669f-4108-8349-bf6b254697cb', list: [1, 2, 3] },
+              { name: 3, id: 'e2f77148-9026-4e68-88ec-c25b4472f240', list: [1, 2, 3] },
+              { name: 4, id: 'a3efc596-6118-4ec7-a3e3-2acb6bd1b951', list: [1, 2, 3] },
+              { name: 5, id: 'f89daf45-a477-47dc-a18e-a67267107c00', list: [1, 2, 3] }
+            ]
+          }
+        }
+      })
+
+      app.mount('#app')
+    </script>
+  </body>
 </html>
