@@ -14,7 +14,18 @@
   </head>
   <body>
     <h1>Hello Frontend Masters</h1>
+    <hr />
     <div id="app">
+      <h2>Counter: {{counter}}</h2>
+      <button v-on:click="incrementCounter">Increment</button>
+      <label>
+        Increment for:
+        <input
+          type="number"
+          v-model="incrementAmount"
+        />
+      </label>
+      <hr />
       <p v-if="message.length % 2 === 0">Even: {{message.toUpperCase()}}</p>
       <p v-else>Odd: {{message}}</p>
       <ul>
@@ -33,6 +44,8 @@
       const app = createApp({
         data() {
           return {
+            counter: 0,
+            incrementAmount: 1,
             message: 'Hello it works',
             listOfNumbers: [
               { name: 1, id: '18d10139-bb78-46b8-b806-335274779233', list: [1, 2, 3] },
@@ -41,6 +54,14 @@
               { name: 4, id: 'a3efc596-6118-4ec7-a3e3-2acb6bd1b951', list: [1, 2, 3] },
               { name: 5, id: 'f89daf45-a477-47dc-a18e-a67267107c00', list: [1, 2, 3] }
             ]
+          }
+        },
+        methods: {
+          incrementCounter() {
+            this.counter += this.incrementAmount
+          },
+          changeIncrementAmount(e) {
+            this.incrementAmount = e.target.value
           }
         }
       })
