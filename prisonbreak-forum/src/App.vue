@@ -1,4 +1,5 @@
 <script>
+import CharacterCard from './components/CharacterCard.vue';
 export default {
   data() {
     return {
@@ -71,24 +72,13 @@ export default {
       favoriteCharacters: new Set()
     }
   },
-  methods: {
-    addToFavorite(character) {
-      this.favoriteCharacters.add(character)
-    },
-    removeFromFavorites(characterId) {
-      this.favoriteCharacters = new Set(
-        [...this.favoriteCharacters].filter(c => c.id !== characterId)
-      )
-    }
+  components: {
+    CharacterCard
   }
 }
 </script>
 
 <template>
-
-
-
-
 
   <body>
     <header>
@@ -97,40 +87,12 @@ export default {
     <h2 class="sectionName">Favorite Characters:</h2>
     <p v-if="!favoriteCharacters.length">No Favorite Characters selected</p>
     <section class="charactersSection">
-      <div class="characterCard" v-for="character in favoriteCharacters" :key="character.id">
-        <img draggable="false" :src="character.img" alt="" />
-        <button @click="removeFromFavorites(character.id)">❌</button>
-        <h2>{{ character.name }}</h2>
-        <p v-if="character.occupation">{{ character.occupation }}</p>
-        <p v-else>Not Specified</p>
-        <p>
-          First Appers in
-          <i>{{ character.firstAppears }}</i>
-        </p>
-        <p>
-          Last Appers in
-          <i>{{ character.lastAppears }}</i>
-        </p>
-      </div>
+      <CharacterCard />
     </section>
 
     <h2 class="sectionName">Characters:</h2>
     <section class="charactersSection">
-      <div class="characterCard" v-for="character in charactersData" :key="character.id">
-        <img draggable="false" :src="character.img" alt="" />
-        <button @click="addToFavorite(character)">⭐</button>
-        <h2>{{ character.name }}</h2>
-        <p v-if="character.occupation">{{ character.occupation }}</p>
-        <p v-else>Not Specified</p>
-        <p>
-          First Appers in
-          <i>{{ character.firstAppears }}</i>
-        </p>
-        <p>
-          Last Appers in
-          <i>{{ character.lastAppears }}</i>
-        </p>
-      </div>
+      <CharacterCard />
     </section>
   </body>
 </template>
@@ -147,26 +109,7 @@ header {
   grid-row-gap: 6px;
 }
 
-.characterCard {
-  width: 320px;
-  position: relative;
-}
 
-.characterCard>img {
-  width: 100%;
-  height: 420px;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
-
-.characterCard>button {
-  position: absolute;
-  left: 0;
-  background-color: transparent;
-  font-size: 32px;
-  border: 0;
-  cursor: pointer;
-}
 
 .sectionName {
   margin: 0px 0px 10px 0px;
