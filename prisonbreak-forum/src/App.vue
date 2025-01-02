@@ -1,5 +1,6 @@
 <script>
 import CharacterCard from './components/CharacterCard.vue';
+import BaseLayout from './components/BaseLayout.vue';
 export default {
   data() {
     return {
@@ -73,7 +74,8 @@ export default {
     }
   },
   components: {
-    CharacterCard
+    CharacterCard,
+    BaseLayout
   },
   methods: {
     addToFavorite(character) {
@@ -90,29 +92,32 @@ export default {
 
 <template>
 
-  <body>
-    <header>
+  <BaseLayout>
+    <template #header>
       <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Prisonbreaklogo.png" alt="" />
-    </header>
-    <h2 class="sectionName">Favorite Characters:</h2>
-    <p v-if="!favoriteCharacters.length">No Favorite Characters selected</p>
-    <section class="charactersSection">
-      <CharacterCard v-for="character in favoriteCharacters" :character="character" :key="character.id" is-favorite
-        @remove-from-favorite="removeFromFavorites" />
-    </section>
+    </template>
+    <template #main>
+      <h2 class="sectionName">Favorite Characters:</h2>
+      <p v-if="!favoriteCharacters.length">No Favorite Characters selected</p>
+      <section class="charactersSection">
+        <CharacterCard v-for="character in favoriteCharacters" :character="character" :key="character.id" is-favorite
+          @remove-from-favorite="removeFromFavorites" />
+      </section>
 
-    <h2 class="sectionName">Characters:</h2>
-    <section class="charactersSection">
-      <CharacterCard v-for="character in charactersData" :character="character" :key="character.id"
-        @add-to-favorite="addToFavorite" />
-    </section>
-  </body>
+      <h2 class="sectionName">Characters:</h2>
+      <section class="charactersSection">
+        <CharacterCard v-for="character in charactersData" :character="character" :key="character.id"
+          @add-to-favorite="addToFavorite" />
+      </section>
+    </template>
+    <template #footer>
+      <p>Made with Vue @ All Rights Reserved</p>
+    </template>
+  </BaseLayout>
+
 </template>
 
 <style scoped>
-header {
-  margin: 20px 0;
-}
 
 .charactersSection {
   display: grid;
@@ -121,8 +126,6 @@ header {
   grid-row-gap: 6px;
   gap: 10px
 }
-
-
 
 .sectionName {
   margin: 0px 0px 10px 0px;
