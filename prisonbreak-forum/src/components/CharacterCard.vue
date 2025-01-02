@@ -1,15 +1,5 @@
 <script>
 export default {
-  methods: {
-    addToFavorite(character) {
-      this.favoriteCharacters.add(character)
-    },
-    removeFromFavorites(characterId) {
-      this.favoriteCharacters = new Set(
-        [...this.favoriteCharacters].filter(c => c.id !== characterId)
-      )
-    }
-  },
   props: {
     character: {
       required: true,
@@ -20,6 +10,7 @@ export default {
       default: false
     }
   },
+  emits: ['add-to-favorite', 'remove-from-favorite']
 
 }
 </script>
@@ -27,8 +18,8 @@ export default {
 <template>
   <div class="characterCard">
     <img draggable="false" :src="character.img" alt="" />
-    <button @click="addToFavorite(character)">⭐</button>
-    <button v-if="isFavorite" @click="removeFromFavorites(character.id)">❌</button>
+    <button v-if="isFavorite" @click="$emit('remove-from-favorite', character.id)">❌</button>
+    <button v-else @click="$emit('add-to-favorite', character)">⭐</button>
     <h2>{{ character.name }}</h2>
     <p v-if="character.occupation">{{ character.occupation }}</p>
     <p v-else>Not Specified</p>

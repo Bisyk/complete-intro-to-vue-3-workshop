@@ -74,7 +74,17 @@ export default {
   },
   components: {
     CharacterCard
-  }
+  },
+  methods: {
+    addToFavorite(character) {
+      this.favoriteCharacters.add(character)
+    },
+    removeFromFavorites(characterId) {
+      this.favoriteCharacters = new Set(
+        [...this.favoriteCharacters].filter(c => c.id !== characterId)
+      )
+    }
+  },
 }
 </script>
 
@@ -87,12 +97,14 @@ export default {
     <h2 class="sectionName">Favorite Characters:</h2>
     <p v-if="!favoriteCharacters.length">No Favorite Characters selected</p>
     <section class="charactersSection">
-      <CharacterCard v-for="character in favoriteCharacters" :character="character" :key="character.id" is-favorite />
+      <CharacterCard v-for="character in favoriteCharacters" :character="character" :key="character.id" is-favorite
+        @remove-from-favorite="removeFromFavorites" />
     </section>
 
     <h2 class="sectionName">Characters:</h2>
     <section class="charactersSection">
-      <CharacterCard v-for="character in charactersData" :character="character" :key="character.id" />
+      <CharacterCard v-for="character in charactersData" :character="character" :key="character.id"
+        @add-to-favorite="addToFavorite" />
     </section>
   </body>
 </template>
@@ -107,6 +119,7 @@ header {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-column-gap: 6px;
   grid-row-gap: 6px;
+  gap: 10px
 }
 
 
