@@ -9,15 +9,26 @@ export default {
         [...this.favoriteCharacters].filter(c => c.id !== characterId)
       )
     }
-  }
+  },
+  props: {
+    character: {
+      required: true,
+      type: Object,
+    },
+    isFavorite: {
+      type: Boolean,
+      default: false
+    }
+  },
+
 }
 </script>
 
 <template>
-  <div class="characterCard" :key="character.id">
+  <div class="characterCard">
     <img draggable="false" :src="character.img" alt="" />
     <button @click="addToFavorite(character)">⭐</button>
-    <button @click="removeFromFavorites(character.id)">❌</button>
+    <button v-if="isFavorite" @click="removeFromFavorites(character.id)">❌</button>
     <h2>{{ character.name }}</h2>
     <p v-if="character.occupation">{{ character.occupation }}</p>
     <p v-else>Not Specified</p>

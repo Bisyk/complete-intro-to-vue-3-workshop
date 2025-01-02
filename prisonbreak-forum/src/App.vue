@@ -87,12 +87,12 @@ export default {
     <h2 class="sectionName">Favorite Characters:</h2>
     <p v-if="!favoriteCharacters.length">No Favorite Characters selected</p>
     <section class="charactersSection">
-      <CharacterCard />
+      <CharacterCard v-for="character in favoriteCharacters" :character="character" :key="character.id" is-favorite />
     </section>
 
     <h2 class="sectionName">Characters:</h2>
     <section class="charactersSection">
-      <CharacterCard />
+      <CharacterCard v-for="character in charactersData" :character="character" :key="character.id" />
     </section>
   </body>
 </template>
