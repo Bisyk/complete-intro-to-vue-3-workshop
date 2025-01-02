@@ -2,20 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Playground — Complete Intro to Vue 3</title>
   </head>
   <body>
     <h1>Hello Frontend Masters!</h1>
     <div id="app">
-      <h1>Counter</h1>
+      <h1>{{counterTitle}}</h1>
       <p>{{ count }}</p>
-      <button v-on:click="incrementCount">Increment Count</button>
+      <button v-on:click="incrementCount">Increment Counter</button>
       <h1>{{ incrementAmount }}</h1>
       <div>
         <label for="incrementAmount">Increment by:</label>
-        <input type="text" v-model="incrementAmount" />
+        <input
+          type="text"
+          v-model="incrementAmount"
+        />
       </div>
       <hr />
       <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
@@ -39,6 +48,7 @@
           return {
             count: 10,
             incrementAmount: 8,
+            counterTitle: 'Counter Standard',
             message: 'Hello it works',
             listOfNumbers: [
               {
@@ -72,6 +82,13 @@
         methods: {
           incrementCount() {
             this.count += this.incrementAmount
+          }
+        },
+        watch: {
+          count(newValue, oldValue) {
+            if (newValue > 20) {
+              this.counterTitle += 'Very long'
+            }
           }
         }
       })
