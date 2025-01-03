@@ -1,16 +1,22 @@
-<script>
-export default {
-  props: {
-    user: {
-      type: Object,
-      required: true,
-    },
-  },
-};
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  user: {
+    required: true
+  }
+})
+
+const emits = defineEmits(['delete-user']) 
 </script>
 
 <template>
-  <li class="user-card">{{ user.name }}: {{ user.website }}</li>
+  <div>
+    <p>{{ user.id }}.{{ user.name }} "{{ user.username }}" - {{ user.email }} <button
+        @click='$emit("delete-user", user.id)'>Delete</button></p>
+    <p>- {{ user.address.street }}, {{ user.address.suite }}, {{ user.address.city }}</p>
+    <br>
+  </div>
 </template>
 
 <style>
