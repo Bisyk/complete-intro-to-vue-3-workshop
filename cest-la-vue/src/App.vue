@@ -10,7 +10,7 @@ export default {
     UsersPage
   },
   data: () => ({
-    currentPage: "User",
+    currentPage: "Users",
   }),
   computed: {
     renderPage() {
