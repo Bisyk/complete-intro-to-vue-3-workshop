@@ -10,21 +10,24 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
-  data() {
+  async setup() {
+    const users = ref([])
+    const fetchUsers = async () => {
+      const res = await fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json())
+      return res
+    }
+
+    users.value = await fetchUsers()
+    console.log(users.value)
+
     return {
-      users: [],
+      users
     }
   },
-  methods: {
-    async fetchUsers() {
-      const users = await fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json())
-      this.users = users
-    }
-  },
-  created() {
-    this.fetchUsers()
-  }
+
+
 };
 </script>
 
