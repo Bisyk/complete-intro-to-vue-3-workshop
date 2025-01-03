@@ -1,13 +1,13 @@
 <script>
 import HomePage from "./components/HomePage.vue";
 import LoginPage from "./components/LoginPage.vue";
-import UserPage from "./components/UserPage.vue";
+import UsersPage from "./components/UsersPage.vue";
 
 export default {
   components: {
     HomePage,
     LoginPage,
-    UserPage,
+    UsersPage
   },
   data: () => ({
     currentPage: "User",
@@ -24,10 +24,15 @@ export default {
     showLoginPage() {
       this.currentPage = "Login";
     },
-    showUserPage() {
-      this.currentPage = "User";
-    },
+    showUsersPage() {
+      this.currentPage = "Users"
+    }
   },
+  computed: {
+    pageToRender() {
+      return this.currentPage + "Page"
+    }
+  }
 };
 </script>
 
@@ -39,14 +44,15 @@ export default {
     <nav class="nav">
       <a href="#" @click.prevent="showHomePage">Home</a>
       <a href="#" @click.prevent="showLoginPage">Login</a>
-      <a href="#" @click.prevent="showUserPage">User</a>
+      <a href="#" @click.prevent="showUsersPage">Users</a>
     </nav>
   </header>
-
   <Suspense>
-    <component :is="renderPage" :key="renderPage" />
+    <component :is="pageToRender" />
 
-    <template v-slot:fallback> Data is loading... </template>
+    <template #fallback>
+      ...
+    </template>
   </Suspense>
 </template>
 
