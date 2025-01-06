@@ -1,4 +1,6 @@
-<script></script>
+<script setup>
+import { counter } from '../composables/useCounter';
+</script>
 
 <template>
   <main>
