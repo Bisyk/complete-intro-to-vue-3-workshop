@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div :class="$style.body">
+    {{ bgColor }}
+    <input v-model="bgColor" type="color">
     <h1>Users</h1>
     <p>Total users {{ totalUsers }}</p>
     <UserCard v-for="user in users" :user="user" @delete-user="deleteUser" />
@@ -10,6 +12,7 @@
 import { computed, ref } from 'vue';
 import UserCard from './UserCard.vue';
 
+const bgColor = ref('#dc9e9e ')
 const users = ref([])
 const fetchUsers = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json())
@@ -29,4 +32,8 @@ console.log(users.value)
 
 </script>
 
-<style></style>
+<style module>
+.body {
+  background-color: v-bind(bgColor)
+}
+</style>
