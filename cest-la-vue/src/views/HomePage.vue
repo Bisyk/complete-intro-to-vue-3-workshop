@@ -1,4 +1,5 @@
 <script setup>
+import { counter } from '../composables/useCounter';
 import { userList } from "../composables/useUserStore";
 import { computed } from "vue";
 

@@ -1,4 +1,11 @@
-<script></script>
+<script>
+
+import { RouterLink, RouterView } from 'vue-router';
+
+export default {
+
+}
+</script>
 
 <template>
   <header class="header">
@@ -6,16 +13,16 @@
       <img src="@/assets/vue-heart.png" width="30" />C'est La Vue
     </span>
     <nav class="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/login">Login</router-link>
-      <router-link to="/user">User</router-link>
+      <RouterLink to="/" @click.prevent="showHomePage">Home</RouterLink>
+      <RouterLink to="/login" @click.prevent="showLoginPage">Login</RouterLink>
+      <RouterLink to="/users" @click.prevent="showUsersPage">Users</RouterLink>
     </nav>
   </header>
-
   <Suspense>
-    <router-view />
-
-    <template v-slot:fallback> Data is loading... </template>
+    <RouterView />
+    <template #fallback>
+      ...
+    </template>
   </Suspense>
 </template>
 
