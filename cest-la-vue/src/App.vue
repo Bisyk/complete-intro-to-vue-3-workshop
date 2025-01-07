@@ -13,9 +13,9 @@ export default {
       <img src="@/assets/vue-heart.png" width="30" />C'est La Vue
     </span>
     <nav class="nav">
-      <RouterLink to="/" @click.prevent="showHomePage">Home</RouterLink>
-      <RouterLink to="/login" @click.prevent="showLoginPage">Login</RouterLink>
-      <RouterLink to="/users" @click.prevent="showUsersPage">Users</RouterLink>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/login">Login</RouterLink>
+      <RouterLink to="/users">Users</RouterLink>
     </nav>
   </header>
   <Suspense>
