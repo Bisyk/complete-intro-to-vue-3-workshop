@@ -1,39 +1,10 @@
 <script>
-import HomePage from "./components/HomePage.vue";
-import LoginPage from "./components/LoginPage.vue";
-import UsersPage from "./components/UsersPage.vue";
+
+import { RouterLink, RouterView } from 'vue-router';
 
 export default {
-  components: {
-    HomePage,
-    LoginPage,
-    UsersPage
-  },
-  data: () => ({
-    currentPage: "Users",
-  }),
-  computed: {
-    renderPage() {
-      return this.currentPage + "Page";
-    },
-  },
-  methods: {
-    showHomePage() {
-      this.currentPage = "Home";
-    },
-    showLoginPage() {
-      this.currentPage = "Login";
-    },
-    showUsersPage() {
-      this.currentPage = "Users"
-    }
-  },
-  computed: {
-    pageToRender() {
-      return this.currentPage + "Page"
-    }
-  }
-};
+
+}
 </script>
 
 <template>
@@ -42,14 +13,13 @@ export default {
       <img src="@/assets/vue-heart.png" width="30" />C'est La Vue
     </span>
     <nav class="nav">
-      <a href="#" @click.prevent="showHomePage">Home</a>
-      <a href="#" @click.prevent="showLoginPage">Login</a>
-      <a href="#" @click.prevent="showUsersPage">Users</a>
+      <RouterLink to="/" @click.prevent="showHomePage">Home</RouterLink>
+      <RouterLink to="/login" @click.prevent="showLoginPage">Login</RouterLink>
+      <RouterLink to="/users" @click.prevent="showUsersPage">Users</RouterLink>
     </nav>
   </header>
   <Suspense>
-    <component :is="pageToRender" />
-
+    <RouterView />
     <template #fallback>
       ...
     </template>

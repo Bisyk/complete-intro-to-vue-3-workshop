@@ -10,7 +10,7 @@
 
 <script setup>
 import { computed, ref } from 'vue';
-import UserCard from './UserCard.vue';
+import UserCard from '../components/UserCard.vue';
 
 const bgColor = ref('#dc9e9e ')
 const users = ref([])
