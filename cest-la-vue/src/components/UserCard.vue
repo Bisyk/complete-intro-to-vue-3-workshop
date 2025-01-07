@@ -25,8 +25,8 @@ const emits = defineEmits(['delete-user'])
   </div>
 </template>
 
-<style>
-.user-card {
+<style scoped>
+div {
   border: 2px solid #222;
   padding: 20px;
   margin: 10px;
